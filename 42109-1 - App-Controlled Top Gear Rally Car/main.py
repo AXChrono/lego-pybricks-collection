@@ -2,8 +2,8 @@
 #                                                                              #
 #           pybricks script for 42109 - RC Truck v.3 by ufotografol            #
 #                                                                              #
-# This script enables the LEGO® Powered Up Technic Hub to be used with the     #
-# LEGO® Powerd UP 88010 Remote.                                                #
+# This script enables the LEGOÂ® Powered Up Technic Hub to be used with the     #
+# LEGOÂ® Powerd UP 88010 Remote.                                                #
 #                                                                              #
 # Configuration of the Technic Hub:                                            #
 #   Port A: Not used                                                           #
@@ -20,22 +20,24 @@
 #                                   Changelog                                  #
 #                                                                              #
 ################################################################################
+# v0.1.0 15-06-2022                                                            #
+#   2 speed "gearbox" added.                                                   #
 # v0.0.1 15-06-2022                                                            #
 #   Changed variable namings.                                                  #
 #   Changelog added.                                                           #
 #   Comment header added.                                                      #
-#   Changed the way spped is handled within the while loop.                    #
+#   Changed the way speed is handled within the while loop.                    #
 # v0.0.0 14-06-2022                                                            #
 #   First version.                                                             #
 ################################################################################
 
 from pybricks.pupdevices import Motor, Remote
-from pybricks.parameters import Port, Direction, Stop, Button
+from pybricks.parameters import Port, Direction, Stop, Button, Color
 from pybricks.tools import wait
 
 # Initialize the motors.
 steering = Motor(Port.B)
-driving = Motor(Port.D, Direction.COUNTERCLOCKWISE)
+driving = Motor(Port.D, Direction.CLOCKWISE)
 
 # Connect to the remote.
 remote = Remote()
@@ -58,25 +60,42 @@ steering.run_target(speed=200, target_angle=0, wait=False)
 
 # Set steering angle for the buggy
 steer_angle = (((right_end - left_end)/2)-5)
-print('steer angle:',steer_angle)
+
+# Set variable for gear
+gear = 1
+speed = 50
 
 while True:
     # Check which buttons are pressed.
     pressed = remote.buttons.pressed()
 
+    # Check if the right middle button is pressed to change gear and set the
+    # speed accordingly.
+    if Button.RIGHT in pressed:
+        if gear is 1:
+            remote.light.on(Color.RED)
+            gear = 2
+            speed = 100
+            wait(100)
+        else:
+            remote.light.on(Color.BLUE)
+            gear = 1
+            speed = 50
+            wait(100)
+
     # Choose the steering angle based on the right controls.
-    if Button.RIGHT_MINUS in pressed:
+    if Button.RIGHT_PLUS in pressed:
         steering.run_target(1400, -steer_angle, Stop.HOLD, False)
-    elif Button.RIGHT_PLUS in pressed:
+    elif Button.RIGHT_MINUS in pressed:
         steering.run_target(1400, steer_angle, Stop.HOLD, False)
     else:
         steering.track_target(0)
 
     # Choose the drive speed based on the left controls.
-    if Button.LEFT_MINUS in pressed:
-        driving.dc(100)
-    elif Button.LEFT_PLUS in pressed:
-        driving.dc(-100)
+    if Button.LEFT_PLUS in pressed:
+        driving.dc(speed)
+    elif Button.LEFT_MINUS in pressed:
+        driving.dc(-speed)
     else:
         driving.dc(0)
 
