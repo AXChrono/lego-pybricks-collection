@@ -21,6 +21,9 @@
 #                                   Changelog                                  #
 #                                                                              #
 ################################################################################
+# v0.1.0 26-06-2022                                                            #
+#   Added half speed for drive.                                                #
+#   Added half angle for steering.                                             #
 # v0.0.0 26-06-2022                                                            #
 #   First version.                                                             #
 #   Based on v0.0.0 22-06-2022 of 42129 B model 'Hot Trot' by Didumos          #
@@ -64,19 +67,33 @@ while True:
 
     # Choose the steering angle based on the right controls.
     if Button.RIGHT_MINUS in pressed:
-        steering.run_target(1400, -steer_angle, Stop.HOLD, False)
+        if Button.RIGHT in pressed:
+            steering.run_target(1400, -(steer_angle/4), Stop.HOLD, False)
+        else:
+            steering.run_target(1400, -steer_angle, Stop.HOLD, False)
     elif Button.RIGHT_PLUS in pressed:
-        steering.run_target(1400, steer_angle, Stop.HOLD, False)
+        if Button.RIGHT in pressed:
+            steering.run_target(1400, (steer_angle/4), Stop.HOLD, False)
+        else:
+            steering.run_target(1400, steer_angle, Stop.HOLD, False)
     else:
         steering.track_target(0)
 
     # Choose the drive speed based on the left controls.
     if Button.LEFT_MINUS in pressed:
-        driving_1.dc(100)
-        driving_2.dc(100)
+        if Button.LEFT in pressed:
+            driving_1.dc(50)
+            driving_2.dc(50)
+        else:
+            driving_1.dc(100)
+            driving_2.dc(100)
     elif Button.LEFT_PLUS in pressed:
-        driving_1.dc(-100)
-        driving_2.dc(-100)
+        if Button.LEFT in pressed:
+            driving_1.dc(-50)
+            driving_2.dc(-50)
+        else:
+            driving_1.dc(-100)
+            driving_2.dc(-100)
     else:
         driving_1.dc(0)
         driving_2.dc(0)
