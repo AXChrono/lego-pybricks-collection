@@ -16,6 +16,11 @@
 #                                   Changelog                                  #
 #                                                                              #
 ################################################################################
+# v0.0.4 01-03-2023                                                            #
+#   Changed value of barrier_wait_up                                           #
+#   Changed barrier_duty_cycle to barrier_duty_cycle_up                        #
+#   Added variable barrier_duty_cycle_down                                     #
+#   Added variable detection_distance                                          #
 # v0.0.3 22-02-2023                                                            #
 #   Changed values of barrier_duty_cycle, barrier_wait_up & barrier_wait_up    #
 # v0.0.2 06-02-2023                                                            #
@@ -35,10 +40,12 @@ from pybricks.parameters import Color, Port
 from pybricks.tools import wait
 
 # variables to set
-barrier_duty_cycle = 50    # speed of the motor (0-100).
-barrier_wait_up = 500      # Time the barrier needs to go up in ms.
-barrier_wait_down = 400    # Time the barrier needs to go down in ms.
-barrier_wait_after = 2000  # Time the barrier waits to go up after last detection.
+barrier_duty_cycle_up = 50   # speed of the motor (0-100).
+barrier_duty_cycle_down = 25 # speed of the motor (0-100).
+barrier_wait_up = 750        # Time the barrier needs to go up in ms.
+barrier_wait_down = 750      # Time the barrier needs to go down in ms.
+barrier_wait_after = 2000    # Time the barrier waits to go up after last detection.
+detection_distance = 75      # Max distance for detection (0-100)
 
 # Initialize the hub.
 hub = TechnicHub()
@@ -50,7 +57,7 @@ distance_sensor_1 = ColorDistanceSensor(Port.C)
 #distance_sensor_2 = ColorDistanceSensor(Port.D)
 
 # Make the barrier go down to calibrate the position
-barrier_motor.dc(-barrier_duty_cycle)
+barrier_motor.dc(-barrier_duty_cycle_down)
 # Wait for the amount of time set with "barrier_wait_down" plus an extra amount for calibration.
 wait(barrier_wait_down+100)
 # Stop the motor.
@@ -66,13 +73,13 @@ barrier_position = 1 # Current barrier position (1=down, 0=up)
 # Start program loop
 while True:
     # Check to see if there is a train.
-    if distance_sensor_1.distance() <= 40:
+    if distance_sensor_1.distance() <= detection_distance:
         # Change light color on hub to reflect the current status.
         hub.light.on(Color.RED)
         # Only send the barrier down if it's currently up.
         if barrier_position == 0:
             # Send barrier down.
-            barrier_motor.dc(-barrier_duty_cycle)
+            barrier_motor.dc(-barrier_duty_cycle_down)
             # wait for the barrier to move to its position.
             wait(barrier_wait_down)
             # Stop the barrier from moving after the wait time.
@@ -80,7 +87,7 @@ while True:
             # Set the variable to the up position
             barrier_position = 1
         # As long as there is a train detected keep program within this loop.
-        while distance_sensor_1.distance() <= 40:
+        while distance_sensor_1.distance() <= detection_distance:
             wait (10)
         # Set the number of while cycles to wait before sending the barrier up after last detection.
         wait_cycles = barrier_wait_after
@@ -96,8 +103,8 @@ while True:
         hub.light.on(Color.GREEN)
         # Only send the barrier up if it's currently down.
         if barrier_position == 1:
-            # Send barrier down.
-            barrier_motor.dc(barrier_duty_cycle)
+            # Send barrier up.
+            barrier_motor.dc(barrier_duty_cycle_up)
             # wait for the barrier to move to its position.
             wait(barrier_wait_up)
             # Stop the barrier from moving after the wait time.
@@ -105,7 +112,7 @@ while True:
             # Set the variable to the up position
             barrier_position = 0
         # As long as there is no train detected keep program within this loop.
-        while distance_sensor_1.distance() > 40:
+        while distance_sensor_1.distance() > detection_distance:
             wait (10)
     # wait for 1ms before continuing.
     wait(1)
