@@ -16,11 +16,13 @@
 #                                   Changelog                                  #
 #                                                                              #
 ################################################################################
+# v0.0.3 22-02-2023                                                            #
+#   Changed values of barrier_duty_cycle, barrier_wait_up & barrier_wait_up    #
 # v0.0.2 06-02-2023                                                            #
-#   changed barrier_wait_up to barrier_wait_after                              #
+#   Changed barrier_wait_up to barrier_wait_after                              #
 #   Changed barrier_wait to barrier_wait_up                                    #
-#   changed barrier_motor_1 to barrier_motor                                   #
-#   added barrier_wait_down                                                    #
+#   Changed barrier_motor_1 to barrier_motor                                   #
+#   Added barrier_wait_down                                                    #
 # v0.0.1 05-02-2023                                                            #
 #   Add comments and header.                                                   #
 # v0.0.0 04-02-2023                                                            #
@@ -33,9 +35,9 @@ from pybricks.parameters import Color, Port
 from pybricks.tools import wait
 
 # variables to set
-barrier_duty_cycle = 30    # speed of the motor (0-100).
-barrier_wait_up = 1000      # Time the barrier needs to go up in ms.
-barrier_wait_down = 600    # Time the barrier needs to go down in ms.
+barrier_duty_cycle = 50    # speed of the motor (0-100).
+barrier_wait_up = 500      # Time the barrier needs to go up in ms.
+barrier_wait_down = 400    # Time the barrier needs to go down in ms.
 barrier_wait_after = 2000  # Time the barrier waits to go up after last detection.
 
 # Initialize the hub.
