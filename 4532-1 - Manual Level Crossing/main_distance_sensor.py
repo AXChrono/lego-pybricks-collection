@@ -7,7 +7,7 @@
 #                                                                              #
 # Configuration of the Technic Hub:                                            #
 #   Port A: 45303-1 - WeDo 2.0 Medium Motor                                    #
-#   Port B: 45303-1 - WeDo 2.0 Medium Motor (not yet implemented)              #
+#   Port B:                                                                    #
 #   Port C: 88007-1 - Color & Distance Sensor                                  #
 #   Port D: 88007-1 - Color & Distance Sensor (not yet implemented)            #
 #                                                                              #
@@ -16,6 +16,11 @@
 #                                   Changelog                                  #
 #                                                                              #
 ################################################################################
+# v0.0.2 06-02-2023                                                            #
+#   changed barrier_wait_up to barrier_wait_after                              #
+#   Changed barrier_wait to barrier_wait_up                                    #
+#   changed barrier_motor_1 to barrier_motor                                   #
+#   added barrier_wait_down                                                    #
 # v0.0.1 05-02-2023                                                            #
 #   Add comments and header.                                                   #
 # v0.0.0 04-02-2023                                                            #
@@ -28,26 +33,26 @@ from pybricks.parameters import Color, Port
 from pybricks.tools import wait
 
 # variables to set
-barrier_duty_cycle = 27 # speed of the motor (0-100).
-barrier_wait = 575      # Time the barrier needs to go up or down in ms.
-barrier_wait_up = 2000  # Time the barries waits to go up after last detection.
+barrier_duty_cycle = 30    # speed of the motor (0-100).
+barrier_wait_up = 1000      # Time the barrier needs to go up in ms.
+barrier_wait_down = 600    # Time the barrier needs to go down in ms.
+barrier_wait_after = 2000  # Time the barrier waits to go up after last detection.
 
 # Initialize the hub.
 hub = TechnicHub()
 
-# Initialize a the motors
-barrier_motor_1 = DCMotor(Port.A)
-#barrier_motor_2 = DCMotor(Port.B)
+# Initialize a the motor
+barrier_motor = DCMotor(Port.A)
 # Initialize the sensors.
 distance_sensor_1 = ColorDistanceSensor(Port.C)
 #distance_sensor_2 = ColorDistanceSensor(Port.D)
 
 # Make the barrier go down to calibrate the position
-barrier_motor_1.dc(barrier_duty_cycle)
-# Wait for the amount of time set with "barrier_wait" plus an extra amount for calibration.
-wait(barrier_wait+100)
+barrier_motor.dc(-barrier_duty_cycle)
+# Wait for the amount of time set with "barrier_wait_down" plus an extra amount for calibration.
+wait(barrier_wait_down+100)
 # Stop the motor.
-barrier_motor_1.stop()
+barrier_motor.stop()
 
 # Wait a few milliseconds for the next step.
 wait(10)
@@ -65,18 +70,18 @@ while True:
         # Only send the barrier down if it's currently up.
         if barrier_position == 0:
             # Send barrier down.
-            barrier_motor_1.dc(barrier_duty_cycle)
+            barrier_motor.dc(-barrier_duty_cycle)
             # wait for the barrier to move to its position.
-            wait(barrier_wait)
+            wait(barrier_wait_down)
             # Stop the barrier from moving after the wait time.
-            barrier_motor_1.stop()
+            barrier_motor.stop()
             # Set the variable to the up position
             barrier_position = 1
         # As long as there is a train detected keep program within this loop.
         while distance_sensor_1.distance() <= 40:
             wait (10)
         # Set the number of while cycles to wait before sending the barrier up after last detection.
-        wait_cycles = barrier_wait_up
+        wait_cycles = barrier_wait_after
     # Check if the barrier needs to stay down
     elif wait_cycles > 0:
         # Change light color on hub to reflect the current status.
@@ -90,11 +95,11 @@ while True:
         # Only send the barrier up if it's currently down.
         if barrier_position == 1:
             # Send barrier down.
-            barrier_motor_1.dc(-barrier_duty_cycle)
+            barrier_motor.dc(barrier_duty_cycle)
             # wait for the barrier to move to its position.
-            wait(barrier_wait)
+            wait(barrier_wait_up)
             # Stop the barrier from moving after the wait time.
-            barrier_motor_1.stop()
+            barrier_motor.stop()
             # Set the variable to the up position
             barrier_position = 0
         # As long as there is no train detected keep program within this loop.
