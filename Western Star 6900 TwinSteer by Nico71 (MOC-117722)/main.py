@@ -73,7 +73,7 @@ while True:
     else:
         steering.track_target(0)
 
-    # Check if the right middle button is pressed to change gear
+    # Check if the center button is pressed to change gear
     if Button.CENTER in pressed:
         if gear_old < gear_total:
             gear += 1
