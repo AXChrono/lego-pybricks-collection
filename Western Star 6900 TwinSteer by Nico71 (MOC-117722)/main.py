@@ -14,6 +14,9 @@
 ################################################################################
 # Rebrickable: https://rebrickable.com/mocs/MOC-117722/                        #
 ################################################################################
+# LEGO® is a trademark of the LEGO Group of companies which does not sponsor,  #
+# authorize or endorse this project.                                           #
+################################################################################
 
 from pybricks.pupdevices import Motor, Remote
 from pybricks.parameters import Port, Direction, Stop, Button, Color
