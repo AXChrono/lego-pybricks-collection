@@ -12,6 +12,8 @@
 #   Port D: Drive motor                                                        #
 #                                                                              #
 ################################################################################
+# Rebrickable: https://rebrickable.com/mocs/MOC-117722/                        #
+################################################################################
 
 from pybricks.pupdevices import Motor, Remote
 from pybricks.parameters import Port, Direction, Stop, Button, Color
