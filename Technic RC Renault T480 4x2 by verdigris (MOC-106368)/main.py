@@ -12,13 +12,10 @@
 #   Port D: Not used                                                           #
 #                                                                              #
 ################################################################################
-#                                                                              #
-#                                   Changelog                                  #
-#                                                                              #
+# Rebrickable: https://rebrickable.com/mocs/MOC-106368/                        #
 ################################################################################
-# v0.0.0 25-09-2022                                                            #
-#   First version.                                                             #
-#   Based on v0.0.0 21-08-2022 of Western Star 6900 TwinSteer by Nico71        #
+# LEGO® is a trademark of the LEGO Group of companies which does not sponsor,  #
+# authorize or endorse this project.                                           #
 ################################################################################
 
 from pybricks.pupdevices import Motor, Remote
@@ -36,12 +33,6 @@ remote = Remote()
 
 # Initialize the hub.
 hub = TechnicHub()
-
-# Read the current settings
-old_kp, old_ki, old_kd, _, _ = steering.control.pid()
-
-# Set new values
-steering.control.pid(kp=old_kp*4, kd=old_kd*0.4)
 
 # Find the steering endpoint on the left and right.
 # The middle is in between.
@@ -81,13 +72,20 @@ while True:
     else:
         steering.track_target(0)
 
+    # Check if the left middle button is pressed to change gear
+    if Button.LEFT in pressed:
+        if gear_old > 1:
+            gear -= 1
+        while Button.LEFT in pressed:
+            # Button debounce 
+            wait(10)
+            pressed = remote.buttons.pressed()
+
     # Check if the right middle button is pressed to change gear
-    if Button.CENTER in pressed:
+    if Button.RIGHT in pressed:
         if gear_old < gear_total:
             gear += 1
-        else:
-            gear = 1
-        while Button.CENTER in pressed:
+        while Button.RIGHT in pressed:
             # Button debounce 
             wait(10)
             pressed = remote.buttons.pressed()
