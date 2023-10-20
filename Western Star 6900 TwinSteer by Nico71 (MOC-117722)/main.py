@@ -12,14 +12,6 @@
 #   Port D: Drive motor                                                        #
 #                                                                              #
 ################################################################################
-#                                                                              #
-#                                   Changelog                                  #
-#                                                                              #
-################################################################################
-# v0.0.0 21-08-2022                                                            #
-#   First version.                                                             #
-#   Based on v0.1.0 05-07-2022 of 42124-1 - Off-Road Buggy                     #
-################################################################################
 
 from pybricks.pupdevices import Motor, Remote
 from pybricks.parameters import Port, Direction, Stop, Button, Color
@@ -37,12 +29,6 @@ remote = Remote()
 
 # Initialize the hub.
 hub = TechnicHub()
-
-# Read the current settings
-old_kp, old_ki, old_kd, _, _ = steering.control.pid()
-
-# Set new values
-steering.control.pid(kp=old_kp*4, kd=old_kd*0.4)
 
 # Find the steering endpoint on the left and right.
 # The middle is in between.
