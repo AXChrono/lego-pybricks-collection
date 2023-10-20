@@ -12,22 +12,8 @@
 #   Port D: Not used                                                           #
 #                                                                              #
 ################################################################################
-#                                                                              #
-#                                   Changelog                                  #
-#                                                                              #
-################################################################################
-# v0.1.0 05-07-2022                                                            #
-#   restructured to the version at pybricks-projects on Github                 #
-#    https://github.com/pybricks/pybricks-projects/blob/master/sets/technic/   #
-#    42124-off-road-buggy/powered-up-remote/main.py                            #
-#   Changed gearbox part.                                                      #
-#    Button left can only shift down                                           #
-#    Button right can only shift up                                            #
-#    New variables to easily change the number of gears                        #
-#   Added battery indicator with hub LED.                                      #
-# v0.0.0 04-07-2022                                                            #
-#   First version.                                                             #
-#   Based on v0.2.0 02-07-2022 of 42109-1 - App-Controlled Top Gear Rally Car  #
+# LEGO® is a trademark of the LEGO Group of companies which does not sponsor,  #
+# authorize or endorse this project.                                           #
 ################################################################################
 
 from pybricks.pupdevices import Motor, Remote
@@ -44,12 +30,6 @@ remote = Remote()
 
 # Initialize the hub.
 hub = TechnicHub()
-
-# Read the current settings
-old_kp, old_ki, old_kd, _, _ = steering.control.pid()
-
-# Set new values
-steering.control.pid(kp=old_kp*4, kd=old_kd*0.4)
 
 # Find the steering endpoint on the left and right.
 # The middle is in between.

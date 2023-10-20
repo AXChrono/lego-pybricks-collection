@@ -21,24 +21,8 @@
 # Off-road racing car (42109) by ConstructionsByDonat                          #
 #   https://rebrickable.com/mocs/MOC-90323/                                    #
 ################################################################################
-#                                                                              #
-#                                   Changelog                                  #
-#                                                                              #
-################################################################################
-# v0.3.0 05-07-2022                                                            #
-#   Based on v0.1.0 05-07-2022 of 42124-1 - Off-Road Buggy                     #
-# v0.2.0 02-07-2022                                                            #
-#   2 speed "gearbox" changed to 3 speed, recodingwith debounce and now left   #
-#    button also used.                                                         #
-# v0.1.0 15-06-2022                                                            #
-#   2 speed "gearbox" added.                                                   #
-# v0.0.1 15-06-2022                                                            #
-#   Changed variable namings.                                                  #
-#   Changelog added.                                                           #
-#   Comment header added.                                                      #
-#   Changed the way speed is handled within the while loop.                    #
-# v0.0.0 14-06-2022                                                            #
-#   First version.                                                             #
+# LEGO® is a trademark of the LEGO Group of companies which does not sponsor,  #
+# authorize or endorse this project.                                           #
 ################################################################################
 
 from pybricks.pupdevices import Motor, Remote
@@ -55,12 +39,6 @@ remote = Remote()
 
 # Initialize the hub.
 hub = TechnicHub()
-
-# Read the current settings
-old_kp, old_ki, old_kd, _, _ = steering.control.pid()
-
-# Set new values
-steering.control.pid(kp=old_kp*4, kd=old_kd*0.4)
 
 # Find the steering endpoint on the left and right.
 # The middle is in between.

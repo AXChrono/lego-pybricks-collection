@@ -15,19 +15,8 @@
 ################################################################################
 # Rebrickable: https://rebrickable.com/mocs/MOC-113177/                        #
 ################################################################################
-#                                                                              #
-#                                   Changelog                                  #
-#                                                                              #
-################################################################################
-# v0.2.0 05-07-2022                                                            #
-#   Based on v0.1.0 05-07-2022 of 42124-1 - Off-Road Buggy                     #
-#   Added steering correction                                                  #
-# v0.1.0 26-06-2022                                                            #
-#   Added half speed for drive.                                                #
-#   Added half angle for steering.                                             #
-# v0.0.0 26-06-2022                                                            #
-#   First version.                                                             #
-#   Based on v0.0.0 22-06-2022 of 42129 B model 'Hot Trot' by Didumos          #
+# LEGO® is a trademark of the LEGO Group of companies which does not sponsor,  #
+# authorize or endorse this project.                                           #
 ################################################################################
 
 from pybricks.pupdevices import Motor, Remote
@@ -45,12 +34,6 @@ remote = Remote()
 
 # Initialize the hub.
 hub = TechnicHub()
-
-# Read the current settings
-old_kp, old_ki, old_kd, _, _ = steering.control.pid()
-
-# Set new values
-steering.control.pid(kp=old_kp*4, kd=old_kd*0.4)
 
 # Find the steering endpoint on the left and right.
 # The middle is in between.
@@ -71,12 +54,13 @@ steering_angle_left = -steering_angle-steering_correction
 steering_angle_right = steering_angle+steering_correction
 
 # Set variable for gear
-gear_total = 2               # Total number of gears.
-gear_old = None              # Empty variable to set later on (keep empty!).
-gear = 2                     # Gear at start (must be higher than 0 and lower or
-                             #  eaqual to gear_total).
-gear_color = ["BLUE", "RED"] # Number of colors should at least be equal to
-                             #  gear_total.
+gear_total = 2                        # Total number of gears.
+gear_old = None                       # Empty variable to set later on (keep
+                                      #  empty!).
+gear = 1                              # Gear at start (must be higher than 0 and
+                                      #  lower or eaqual to gear_total).
+gear_color = ["BLUE", "RED"]          # Number of colors should at least be
+                                      #  equal to gear_total.
 
 # Battery variables
 voltage_current = hub.battery.voltage()
