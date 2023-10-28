@@ -20,7 +20,7 @@
 
 from pybricks.hubs import TechnicHub
 from pybricks.pupdevices import Motor, Remote
-from pybricks.parameters import Port, Direction, Stop, Button
+from pybricks.parameters import Port, Direction, Stop, Button, Color
 from pybricks.tools import wait
 from uerrno import ENODEV
 
@@ -83,6 +83,10 @@ while x < 4:
         ) - 5
         track_switch[x].run_target(200, -track_switch_angle[x], Stop.COAST, False)
     x = x + 1
+
+# Battery variables
+voltage_current = hub.battery.voltage()
+voltage = voltage_current
 
 # Main program.
 while True:
@@ -165,6 +169,23 @@ while True:
                     )
                 switch_track_switch[x] = 0
         x = x + 1
+
+    # Show battery status by hub LED.
+    # Get current voltage and gradually up or down the value.
+    voltage_current = hub.battery.voltage()
+    if voltage_current < voltage:
+        voltage -= 1
+    elif voltage_current > voltage:
+        voltage += 1
+    # Show the correct color.
+    if voltage > 9000:
+        hub.light.on(Color.GREEN)
+    elif voltage > 8100:
+        hub.light.on(Color.YELLOW)
+    elif voltage > 7200:
+        hub.light.on(Color.ORANGE)
+    else:
+        hub.light.on(Color.RED)
 
     # Wait.
     wait(10)
