@@ -11,7 +11,7 @@ This is mainly needed to get no code errors and make use of IntelliSense.
 [Based on the information on this support topic on GitHub.](https://github.com/pybricks/support/issues/10)
 
 * Click the right mouse button under the last file in the explorer pane.
-* click **Open in integrated Terminal**
+* Click **Open in integrated Terminal**
 * Execute the following in the Terminal:
 
   ```sh
