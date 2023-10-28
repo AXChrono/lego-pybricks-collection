@@ -6,10 +6,10 @@
 # LEGO® Powerd UP 88010 Remote in conjunction with the 4531 Manual Points      #
 #                                                                              #
 # Configuration of the Technic Hub:                                            #
-#   Port A: Track switch with left and right limited [optional                 #
-#   Port B: Track switch with left and right limited [optional                 #
-#   Port C: Track switch with left and right limited [optional                 #
-#   Port D: Track switch with left and right limited [optional                 #
+#   Port A: Track switch with left and right limited [optional]                #
+#   Port B: Track switch with left and right limited [optional]                #
+#   Port C: Track switch with left and right limited [optional]                #
+#   Port D: Track switch with left and right limited [optional]                #
 #                                                                              #
 ################################################################################
 # Initial idea for the hardware: https://youtu.be/qWDMIOtVFSY                  #
