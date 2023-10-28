@@ -1,6 +1,6 @@
 ################################################################################
 #                                                                              #
-#               pybricks script for Motorized 4531 Manual Points               #
+#         pybricks script for 4531-1 - Manual Points with Motorization         #
 #                                                                              #
 # This script enables the LEGO® Powered Up Technic Hub to be used with the     #
 # LEGO® Powerd UP 88010 Remote in conjunction with the 4531 Manual Points      #
@@ -25,12 +25,12 @@ from pybricks.tools import wait
 from uerrno import ENODEV
 
 # Variables
-used_ports = ["A", "B", "C", "D"] # Port names
-track_switch = [0, 0, 0, 0] # Variable to initialize track switch
-track_switch_left_end = [0, 0, 0, 0] # Left angle of switch track
-track_switch_right_end = [0, 0, 0, 0] # Right angle of switch track
-track_switch_angle = [0, 0, 0, 0] # Delta angle of switch track
-switch_track_switch = [0, 0, 0, 0] # Will be set to 1 if track switch should be switched
+used_ports = ["A", "B", "C", "D"]  # Port names
+track_switch = [0, 0, 0, 0]  # Variable to initialize track switch
+track_switch_left_end = [0, 0, 0, 0]  # Left angle of switch track
+track_switch_right_end = [0, 0, 0, 0]  # Right angle of switch track
+track_switch_angle = [0, 0, 0, 0]  # Delta angle of switch track
+switch_track_switch = [0, 0, 0, 0]  # If track switch should be switched
 
 # Test which port(s) have a motor connected.
 x = 0
