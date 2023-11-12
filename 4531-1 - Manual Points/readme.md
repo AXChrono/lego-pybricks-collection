@@ -10,11 +10,11 @@ The initial idea of the model was from this [YouTube video by The Technic Gear L
 
 ## Software
 
-The software is written in such a way that you can connect up to 4 track switches to each of the ports of the Powered Up Technic Hub. It doesn´t matter which port you use and how manu you use.
+The software is written in such a way that you can connect up to 4 track switches to each of the ports of the Powered Up Technic Hub. It doesn't matter which port you use or how many you use.
 
-At first start the ports are checked for a motor and if present it is calibrated.
+At first start the ports are checked for a motor and if a motor is present it is calibrated.
 
-The buttons on the remote switch the following ports:
+The buttons on the remote switches the following ports:
 
 | Button             | A | B | C | D |
 |--------------------|---|---|---|---|
@@ -28,7 +28,7 @@ The buttons on the remote switch the following ports:
 
 The switch can also be turned over manualy. The software is aware of its position before it will switch over the next time.
 
-The LED on the hub will represet the battery voltage according to the table below.
+The LED on the hub will represent the battery voltage according to the table below.
 
 | Voltage           | Color  |
 |-------------------|--------|
