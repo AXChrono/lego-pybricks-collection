@@ -15,12 +15,8 @@
 ################################################################################
 # Rebrickable: https://rebrickable.com/mocs/MOC-105180/                        #
 ################################################################################
-#                                                                              #
-#                                   Changelog                                  #
-#                                                                              #
-################################################################################
-# v0.0.0 09-07-2022                                                            #
-#   First version.                                                             #
+# LEGO® is a trademark of the LEGO Group of companies which does not sponsor,  #
+# authorize or endorse this project.                                           #
 ################################################################################
 
 from pybricks.pupdevices import Motor, Remote

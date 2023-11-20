@@ -27,9 +27,8 @@
 #                                   Changelog                                  #
 #                                                                              #
 ################################################################################
-# v0.0.0 20-06-2022                                                            #
-#   First version.                                                             #
-#   Based on v0.1.0 15-06-2022 of 42109 - RC Truck v.3 by ufotografol          #
+# LEGO® is a trademark of the LEGO Group of companies which does not sponsor,  #
+# authorize or endorse this project.                                           #
 ################################################################################
 
 from pybricks.pupdevices import Motor, Remote
