@@ -10,15 +10,11 @@ This is mainly needed to get no code errors and make use of IntelliSense.
 
 [Based on the information on this support topic on GitHub.](https://github.com/pybricks/support/issues/10)
 
-* Click the right mouse button under the last file in the explorer pane.
-* Click **Open in integrated Terminal**
-* Execute the following in the Terminal:
-
-  ```sh
-  python3 -m venv .venv
-  ```
-
-* Open the Command Pallette (Ctrl + Shift + P) and search for **Python: Create Terminal**.
+* Open the Command Pallette (from the menu bar: open Help &rarr; Show All Commands or just press Ctrl + Shift + P) and search for **Python: Create Environment...**.
+* Select **Venv** to create a .venv environment.
+* Select the python version.
+* A .venv folder should now be created.
+* Open the Command Pallette (from the menu bar: open Help &rarr; Show All Commands or just press Ctrl + Shift + P) again and search for **Python: Create Terminal**.
 * Execute the following in the Terminal:
 
   ```sh
