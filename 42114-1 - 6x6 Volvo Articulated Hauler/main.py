@@ -43,7 +43,7 @@ driving = Motor(Port.A, Direction.CLOCKWISE)
 # Connect to the remote.
 remote = Remote()
 
-#Find the gearing endpoints but keep trying if value is below threshold of 200.
+# Find the gearing endpoints but keep trying if value is below threshold of 200.
 gear_angle = 0
 while gear_angle < 200:
     # Find the steering endpoint on the left and right.
@@ -52,8 +52,8 @@ while gear_angle < 200:
     right_end_gearbox = gearbox.run_until_stalled(200, then=Stop.HOLD)
 
     # Set gearing angle
-    gear_angle = (((right_end_gearbox - left_end_gearbox)/2)-5)
-    print('Gear angle measured:',gear_angle)
+    gear_angle = ((right_end_gearbox - left_end_gearbox) / 2) - 5
+    print("Gear angle measured:", gear_angle)
 
 # Find the steering endpoint on the left and right.
 # The middle is in between.
@@ -62,21 +62,21 @@ right_end_steering = steering.run_until_stalled(200, then=Stop.HOLD)
 
 # Set gearing angle
 # Real angle of gear mechanism is 270 degrees (135 both sides from center).
-gear_angle = 270/2
+gear_angle = 270 / 2
 gear_angle_1 = gear_angle
-gear_angle_2 = gear_angle-(((gear_angle+gear_angle)/3)*1)
-gear_angle_3 = gear_angle-(((gear_angle+gear_angle)/3)*2)
+gear_angle_2 = gear_angle - (((gear_angle + gear_angle) / 3) * 1)
+gear_angle_3 = gear_angle - (((gear_angle + gear_angle) / 3) * 2)
 gear_angle_tipper = -gear_angle
-print('Gear angle real:',gear_angle)
+print("Gear angle real:", gear_angle)
 # Set steering angle
-steer_angle = (((right_end_steering - left_end_steering)/2)-5)
-print('steer angle:',steer_angle)
+steer_angle = ((right_end_steering - left_end_steering) / 2) - 5
+print("steer angle:", steer_angle)
 
 # We are now at the right. Reset this angle to be half the difference.
 # That puts zero in the middle.
-gearbox.reset_angle((right_end_gearbox - left_end_gearbox)/2)
+gearbox.reset_angle((right_end_gearbox - left_end_gearbox) / 2)
 gearbox.run_target(1400, gear_angle, Stop.HOLD, False)
-steering.reset_angle((right_end_steering - left_end_steering)/2)
+steering.reset_angle((right_end_steering - left_end_steering) / 2)
 steering.run_target(speed=200, target_angle=0, wait=False)
 
 # Set variable for gear
@@ -98,7 +98,7 @@ while True:
         else:
             gear = 1
         while Button.RIGHT in pressed:
-            # Button debounce 
+            # Button debounce
             wait(10)
             pressed = remote.buttons.pressed()
 
@@ -113,7 +113,7 @@ while True:
         else:
             gear = 3
         while Button.LEFT in pressed:
-            # Button debounce 
+            # Button debounce
             wait(10)
             pressed = remote.buttons.pressed()
 
@@ -140,7 +140,7 @@ while True:
             if gear_old is 1:
                 wait(500)
             gear_old = 4
-        # Wait before going on so changing gear won't happen while driving. 
+        # Wait before going on so changing gear won't happen while driving.
         wait(250)
 
     # Choose the steering angle based on the right controls.

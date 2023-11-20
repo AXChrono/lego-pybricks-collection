@@ -38,20 +38,21 @@ right_end = steering.run_until_stalled(200, then=Stop.HOLD)
 
 # We are now at the right. Reset this angle to be half the difference.
 # That puts zero in the middle.
-steering.reset_angle((right_end - left_end)/2)
+steering.reset_angle((right_end - left_end) / 2)
 steering.run_target(speed=200, target_angle=0, wait=False)
 
 # Set steering angle
-steering_angle = (((right_end - left_end)/2)-5)
+steering_angle = ((right_end - left_end) / 2) - 5
 
 # Set variable for gear
-gear_total = 3                        # Total number of gears.
-gear_old = None                       # Empty variable to set later on (keep
-                                      #  empty!).
-gear = 1                              # Gear at start (must be higher than 0 and
-                                      #  lower or eaqual to gear_total).
-gear_color = ["BLUE", "WHITE", "RED"] # Number of colors should at least be
-                                      #  equal to gear_total.
+# Total number of gears.
+gear_total = 3
+# Empty variable to set later on (keep empty!).
+gear_old = None
+# Gear at start (must be higher than 0 and lower or eaqual to gear_total).
+gear = 1
+# Number of colors should at least be equal to gear_total.
+gear_color = ["BLUE", "WHITE", "RED"]
 
 # Battery variables
 voltage_current = hub.battery.voltage()
@@ -74,7 +75,7 @@ while True:
         if gear_old > 1:
             gear -= 1
         while Button.LEFT in pressed:
-            # Button debounce 
+            # Button debounce
             wait(10)
             pressed = remote.buttons.pressed()
 
@@ -83,14 +84,14 @@ while True:
         if gear_old < gear_total:
             gear += 1
         while Button.RIGHT in pressed:
-            # Button debounce 
+            # Button debounce
             wait(10)
             pressed = remote.buttons.pressed()
 
     # Set speed according to the choosen gear.
     if gear is not gear_old:
-        remote.light.on(Color[gear_color[gear-1]])
-        speed = (100/gear_total)*gear
+        remote.light.on(Color[gear_color[gear - 1]])
+        speed = (100 / gear_total) * gear
         gear_old = gear
 
     # Choose the drive speed based on the left controls.
@@ -102,7 +103,7 @@ while True:
 
     # Apply the selected speed.
     driving.dc(drive_speed)
-    
+
     # Show battery status by hub LED.
     # Get current voltage and gradually up or down the value.
     voltage_current = hub.battery.voltage()

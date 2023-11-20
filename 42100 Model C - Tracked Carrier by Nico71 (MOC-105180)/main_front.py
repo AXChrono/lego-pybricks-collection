@@ -71,7 +71,7 @@ while True:
         crane_top_speed = 100
     elif Button.RIGHT in pressed:
         crane_top_speed = -100
-    
+
     if Button.CENTER in pressed:
         if engine_speed is engine_speed_set or engine_speed is -engine_speed_set:
             engine_speed = 0
@@ -79,7 +79,7 @@ while True:
         else:
             engine_speed = engine_speed_set
         while Button.CENTER in pressed:
-            # Button debounce 
+            # Button debounce
             wait(10)
             pressed = remote.buttons.pressed()
 
@@ -96,7 +96,7 @@ while True:
 
         if engine_speed_measured < 100:
             if engine_fail_counter > 0:
-                engine_fail_counter = engine_fail_counter-1
+                engine_fail_counter = engine_fail_counter - 1
             else:
                 engine_speed = -engine_speed
                 engine_fail_counter = engine_fail_counter_set
