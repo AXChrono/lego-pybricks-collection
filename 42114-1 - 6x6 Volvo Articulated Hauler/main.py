@@ -43,14 +43,6 @@ driving = Motor(Port.A, Direction.CLOCKWISE)
 # Connect to the remote.
 remote = Remote()
 
-# Read the current settings
-old_kp, old_ki, old_kd, _, _ = gearbox.control.pid()
-old_kp, old_ki, old_kd, _, _ = steering.control.pid()
-
-# Set new values
-gearbox.control.pid(kp=old_kp*4, kd=old_kd*0.4)
-steering.control.pid(kp=old_kp*4, kd=old_kd*0.4)
-
 #Find the gearing endpoints but keep trying if value is below threshold of 200.
 gear_angle = 0
 while gear_angle < 200:
