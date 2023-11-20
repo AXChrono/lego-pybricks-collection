@@ -167,6 +167,3 @@ while True:
         driving.dc(-100)
     else:
         driving.dc(0)
-
-    # Wait.
-    wait(10)

@@ -128,6 +128,3 @@ while True:
         hub.light.on(Color.ORANGE)
     else:
         hub.light.on(Color.RED)
-
-    # Wait.
-    wait(10)
