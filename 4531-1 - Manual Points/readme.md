@@ -4,7 +4,7 @@ To motorize a track switch (manual point) build at least one of the build in the
 
 You also need a [Large Powered Up Motor](https://rebrickable.com/parts/22169/motor-large-powered-up/72/). The motor can be attached to both sides of the track switch by pushing the axle through and placing the pins on the other side.
 
-The initial idea of the model was from this [YouTube video by The Technic Gear LEGO Reviews](https://youtu.be/qWDMIOtVFSY).
+The idea of the model from my part was from this [YouTube video by The Technic Gear LEGO Reviews](https://youtu.be/qWDMIOtVFSY), the initial idea seems to be by [user skaako on Eurobricks](https://www.eurobricks.com/forum/index.php?/forums/topic/67730-ronald-vallenduuks-power-functions-points-motor/&tab=comments#comment-1256146).
 
 ![Motorized Lego® Track Switch](model.png)
 
