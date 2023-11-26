@@ -1,5 +1,7 @@
 {
     "recommendations": [
+        "brickdimensions.ldraw",
+        "davidanson.vscode-markdownlint",
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-python.black-formatter"
